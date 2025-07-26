@@ -119,15 +119,17 @@ if st.button("🔍 Predict Dropout Risk"):
     prediction = bool(model.predict(input_data)[0])
     st.session_state.predicted = True
     st.session_state.prediction_result = prediction
+
+    prediction = st.session_state.get("prediction_result", None)
     
-if prediction is not None:
-    if prediction:
-        st.error("⚠️ High Dropout Risk")
-    else:
-        st.success("✅ Low Dropout Risk")
+    if prediction is not None:
+        if prediction:
+            st.error("⚠️ High Dropout Risk")
+        else:
+            st.success("✅ Low Dropout Risk")
 
     st.subheader("💡 Suggestions")
-
+    
     if st.session_state.attendance < 60.0:
         st.warning("📉 Low attendance. Consider engaging parents and offering attendance incentives.")
     
