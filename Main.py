@@ -98,9 +98,9 @@ with col1:
     st.session_state.internet = st.selectbox("Internet Access", [True, False], index=0 if st.session_state.internet else 1)
 
 with col2:
+    st.session_state.income = st.number_input("Family Income (INR/month)", 2000, 60000, step=100, value=st.session_state.income)
     st.session_state.grade = st.slider("Grade Average", 1.0, 10.0, step=0.1, value=st.session_state.grade)
     st.session_state.commute = st.slider("Commute Distance (km)", 0.1, 25.0, step=0.1, value=st.session_state.commute)
-    st.session_state.income = st.number_input("Family Income (INR/month)", 2000, 60000, step=100, value=st.session_state.income)
     st.session_state.support = st.selectbox("Extra Support", [True, False], index=0 if st.session_state.support else 1)
 
 if st.button("🔍 Predict Dropout Risk"):
