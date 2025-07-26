@@ -103,7 +103,6 @@ with col2:
     st.session_state.income = st.number_input("Family Income (INR/month)", 2000, 60000, step=100, value=st.session_state.income)
     st.session_state.support = st.selectbox("Extra Support", [True, False], index=0 if st.session_state.support else 1)
 
-
 if st.button("🔍 Predict Dropout Risk"):
     gender_encoded = 1 if st.session_state.gender == "Male" else 0
     input_data = np.array([[
@@ -119,6 +118,10 @@ if st.button("🔍 Predict Dropout Risk"):
     
     prediction = bool(model.predict(input_data)[0])
     st.session_state.predicted = True
+    st.session_state.prediction_result = prediction
+
+if st.session_state.predicted:
+    prediction = st.session_state.prediction_result
 
     if prediction:
         st.error("⚠️ High Dropout Risk")
@@ -154,12 +157,12 @@ if st.button("🔍 Predict Dropout Risk"):
     ]):
         st.success("🎯 This student is on the right track! Encourage continued effort and support.")
 
-if st.session_state.predicted:
-    st.markdown("### ")
-    if st.button("🔁 Reset"):
-        for key in defaults:
-            st.session_state[key] = defaults[key]
-        st.experimental_rerun()
+    if st.session_state.predicted:
+        st.markdown("### ")
+        if st.button("🔁 Reset"):
+            for key in defaults:
+                st.session_state[key] = defaults[key]
+            st.experimental_rerun()
 
 st.markdown("""
 <hr style="margin-top: 3rem; border-top: 1px solid #444;">
