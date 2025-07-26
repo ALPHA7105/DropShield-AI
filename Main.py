@@ -119,10 +119,8 @@ if st.button("🔍 Predict Dropout Risk"):
     prediction = bool(model.predict(input_data)[0])
     st.session_state.predicted = True
     st.session_state.prediction_result = prediction
-
-if st.session_state.predicted:
-    prediction = st.session_state.prediction_result
-
+    
+if prediction is not None:
     if prediction:
         st.error("⚠️ High Dropout Risk")
     else:
