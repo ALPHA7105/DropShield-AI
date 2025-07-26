@@ -96,7 +96,7 @@ st.markdown("---")
 if st.button("🔍 Predict Dropout Risk"):
     input_data = np.array([[gender_encoded, age, attendance, grade, commute,
                             income, support, internet]])
-    prediction = model.predict(input_data)[0]
+    prediction = bool(model.predict(input_data)[0])
 
     if prediction:
         st.error("⚠️ High Dropout Risk")
