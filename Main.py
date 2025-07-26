@@ -22,7 +22,7 @@ x_test_scale = standardise.transform(x_test)
 
 model = tree.DecisionTreeClassifier(max_depth=7)
 model = model.fit(x_train,y_train)
-y_predict = dt.predict(x_test)
+#y_predict = dt.predict(x_test)
 
 st.set_page_config(page_title="DropShield AI", layout="wide", page_icon="🛡️")
 
