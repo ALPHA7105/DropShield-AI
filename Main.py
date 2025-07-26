@@ -77,9 +77,9 @@ st.markdown("Fill in student details to predict dropout risk. 🚸")
 defaults = {
     "gender": "Male",
     "age": 16,
-    "attendance": 75.0,
+    "attendance": 65.0,
     "grade": 5.0,
-    "commute": 5.0,
+    "commute": 7.5,
     "income": 10000,
     "support": True,
     "internet": True,
