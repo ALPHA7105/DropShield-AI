@@ -77,8 +77,8 @@ st.markdown("Fill in student details to predict dropout risk. 🚸")
 defaults = {
     "gender": "Male",
     "age": 16,
-    "attendance": 75.0,
-    "grade": 6.0,
+    "attendance": 50.0,
+    "grade": 5.0,
     "commute": 5.0,
     "income": 10000,
     "support": True,
@@ -127,22 +127,22 @@ if st.button("🔍 Predict Dropout Risk"):
 
     st.subheader("💡 Suggestions")
 
-    if attendance < 60.0:
+    if session_state.attendance < 60.0:
         st.warning("📉 Low attendance. Consider engaging parents and offering attendance incentives.")
     
-    if grade < 5.0:
+    if session_state.grade < 5.0:
         st.warning("📚 Low academic performance. Recommend academic support or tutoring.")
     
-    if income < 8000:
+    if session_state.income < 8000:
         st.warning("💰 Low family income. Explore scholarship or subsidy programs.")
     
-    if commute > 10.0:
+    if session_state.commute > 10.0:
         st.warning("🚍 Long commute. Suggest looking into transport assistance or flexible learning.")
     
-    if not internet:
+    if not session_state.internet:
         st.warning("🌐 No internet access. Consider offline resources or community access centers.")
     
-    if not support:
+    if not session_state.support:
         st.info("🤝 Additional school support may help this student succeed.")
     
     if prediction == False and all([
