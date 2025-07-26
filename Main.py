@@ -78,7 +78,7 @@ defaults = {
     "gender": "Male",
     "age": 16,
     "attendance": 65.0,
-    "grade": 5.0,
+    "grade": 5.5,
     "commute": 12.5,
     "income": 10000,
     "support": True,
