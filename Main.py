@@ -89,7 +89,7 @@ if st.button("Predict Dropout Risk"):
     else:
         st.success("✅ Low Dropout Risk")
 
-  st.subheader("💡 Suggestions")
+st.subheader("💡 Suggestions")
 
   if attendance < 60.0:
       st.warning("📉 Low attendance. Consider engaging parents and offering attendance incentives.")
