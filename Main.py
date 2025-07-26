@@ -70,32 +70,38 @@ st.markdown("""
     </div>
 """, unsafe_allow_html=True)
 
+st.markdown("---")
+
 st.markdown("Fill in student details to predict dropout risk. 🚸")
 
-gender = st.selectbox("Gender", ["Male", "Female"])
+col1, col2 = st.columns(2)
+
+with col1:
+    gender = st.selectbox("Gender", ["Male", "Female"])
+    age = st.slider("Age", 13, 19)
+    attendance = st.slider("Attendance (%)", 30.0, 100.0, step=0.5)
+    internet = st.selectbox("Internet Access", [True, False])
+
+with col2:
+    grade = st.slider("Grade Average", 1.0, 10.0, step=0.1)
+    commute = st.slider("Commute Distance (km)", 0.1, 25.0, step=0.1)
+    income = st.number_input("Family Income (INR/month)", 2000, 60000, step=100)
+    support = st.selectbox("Extra Support", [True, False])
+
+# Encoding gender
 gender_encoded = 1 if gender == "Male" else 0
-age = st.slider("Age", 13, 19)
-attendance = st.slider("Attendance (%)", 30.0, 100.0)
-grade = st.slider("Grade Average (1.0 to 10.0)", 1.0, 10.0)
-commute = st.slider("Commute Distance (km)", 0.1, 25.0)
-income = st.number_input("Family Income (INR/month)", 2000, 60000)
-support = st.selectbox("Extra Support", [True, False])
-internet = st.selectbox("Internet Access", [True, False])
 
-if st.button("Predict Dropout Risk"):
-    try:
-        input_data = np.array([[gender_encoded, age, attendance, grade,
-                                commute, income, support, internet]])
+# Button to Predict
+st.markdown("---")
+if st.button("🔍 Predict Dropout Risk"):
+    input_data = np.array([[gender_encoded, age, attendance, grade, commute,
+                            income, support, internet]])
+    prediction = model.predict(input_data)[0]
 
-        prediction = model.predict(input_data)[0]
-
-        if prediction:
-            st.error("⚠️ High Dropout Risk")
-        else:
-            st.success("✅ Low Dropout Risk")
-
-    except Exception as e:
-        st.warning(f"⚠️ Something went wrong: {e}")
+    if prediction:
+        st.error("⚠️ High Dropout Risk")
+    else:
+        st.success("✅ Low Dropout Risk")
 
 
 st.subheader("💡 Suggestions")
@@ -127,18 +133,17 @@ if prediction == False and all([
 ]):
     st.success("🎯 This student is on the right track! Encourage continued effort and support.")
 
-st.markdown("---")
 
 st.markdown("""
 <hr style="margin-top: 3rem; border-top: 1px solid #444;">
 <div style='display: flex; justify-content: space-between; padding: 20px; color: gray; font-size: 14px;'>
     <div style="flex: 1; text-align: left;">
-        <b>📊 School Dropout Risk Prediction using Machine Learning 🧠</b><br>
-        Explore the mysteries of the universe with us.
+        <b>The original model was made in Jupyter Notebook.</b><br>
+        A copy of that model was deployed in this webpage.
     </div>
     <div style="flex: 1; text-align: center;">
         <b style="color: #ffffff;">🎓 DropShield AI 🛡️</b><br>
-        Your gateway to space knowledge
+        📊 Predicting School Dropout Risk using Machine Learning 🧠<br>Built with ❤️ for student success.
     </div>
     <div style="flex: 1; text-align: right;">
         <b>This webpage and AI model was created by Sarvesh Kore:</b><br>
