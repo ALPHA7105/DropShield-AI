@@ -74,39 +74,56 @@ st.markdown("---")
 
 st.markdown("Fill in student details to predict dropout risk. 🚸")
 
-if 'predicted' not in st.session_state:
-    st.session_state.predicted = False
+defaults = {
+    "gender": "Male",
+    "age": 16,
+    "attendance": 75.0,
+    "grade": 6.0,
+    "commute": 5.0,
+    "income": 10000,
+    "support": True,
+    "internet": True,
+    "predicted": False
+}
+for key, val in defaults.items():
+    if key not in st.session_state:
+        st.session_state[key] = val
 
 col1, col2 = st.columns(2)
 
 with col1:
-    gender = st.selectbox("Gender", ["Male", "Female"])
-    age = st.slider("Age", 13, 19)
-    attendance = st.slider("Attendance (%)", 30.0, 100.0, step=0.5)
-    internet = st.selectbox("Internet Access", [True, False])
+    st.session_state.gender = st.selectbox("Gender", ["Male", "Female"], index=0 if st.session_state.gender == "Male" else 1)
+    st.session_state.age = st.slider("Age", 13, 19, value=st.session_state.age)
+    st.session_state.attendance = st.slider("Attendance (%)", 30.0, 100.0, step=0.5, value=st.session_state.attendance)
+    st.session_state.internet = st.selectbox("Internet Access", [True, False], index=0 if st.session_state.internet else 1)
 
 with col2:
-    grade = st.slider("Grade Average", 1.0, 10.0, step=0.1)
-    commute = st.slider("Commute Distance (km)", 0.1, 25.0, step=0.1)
-    income = st.number_input("Family Income (INR/month)", 2000, 60000, step=100)
-    support = st.selectbox("Extra Support", [True, False])
+    st.session_state.grade = st.slider("Grade Average", 1.0, 10.0, step=0.1, value=st.session_state.grade)
+    st.session_state.commute = st.slider("Commute Distance (km)", 0.1, 25.0, step=0.1, value=st.session_state.commute)
+    st.session_state.income = st.number_input("Family Income (INR/month)", 2000, 60000, step=100, value=st.session_state.income)
+    st.session_state.support = st.selectbox("Extra Support", [True, False], index=0 if st.session_state.support else 1)
 
-gender_encoded = 1 if gender == "Male" else 0
-
-st.markdown("---")
 
 if st.button("🔍 Predict Dropout Risk"):
-    input_data = np.array([[gender_encoded, age, attendance, grade, commute,
-                            income, support, internet]])
+    gender_encoded = 1 if st.session_state.gender == "Male" else 0
+    input_data = np.array([[
+        gender_encoded,
+        st.session_state.age,
+        st.session_state.attendance,
+        st.session_state.grade,
+        st.session_state.commute,
+        st.session_state.income,
+        st.session_state.support,
+        st.session_state.internet
+    ]])
+    
     prediction = bool(model.predict(input_data)[0])
+    st.session_state.predicted = True
 
     if prediction:
         st.error("⚠️ High Dropout Risk")
-        st.markdown("**Suggestions:** Ensure regular attendance, seek school support, and check internet access.")
     else:
         st.success("✅ Low Dropout Risk")
-        st.markdown("Keep up the good work! Continue support and engagement.")
-
 
     st.subheader("💡 Suggestions")
 
@@ -138,11 +155,10 @@ if st.button("🔍 Predict Dropout Risk"):
         st.success("🎯 This student is on the right track! Encourage continued effort and support.")
 
 if st.session_state.predicted:
-    st.markdown("#### ")
+    st.markdown("### ")
     if st.button("🔁 Reset"):
-        for key in ["gender", "age", "attendance", "internet", "grade", "commute", "income", "support"]:
-            st.session_state[key] = None
-        st.session_state.predicted = False
+        for key in defaults:
+            st.session_state[key] = defaults[key]
         st.experimental_rerun()
 
 st.markdown("""
