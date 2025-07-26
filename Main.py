@@ -127,22 +127,22 @@ if st.button("🔍 Predict Dropout Risk"):
 
     st.subheader("💡 Suggestions")
 
-    if session_state.attendance < 60.0:
+    if st.session_state.attendance < 60.0:
         st.warning("📉 Low attendance. Consider engaging parents and offering attendance incentives.")
     
-    if session_state.grade < 5.0:
+    if st.session_state.grade < 5.0:
         st.warning("📚 Low academic performance. Recommend academic support or tutoring.")
     
-    if session_state.income < 8000:
+    if st.session_state.income < 8000:
         st.warning("💰 Low family income. Explore scholarship or subsidy programs.")
     
-    if session_state.commute > 10.0:
+    if st.session_state.commute > 10.0:
         st.warning("🚍 Long commute. Suggest looking into transport assistance or flexible learning.")
     
-    if not session_state.internet:
+    if not st.session_state.internet:
         st.warning("🌐 No internet access. Consider offline resources or community access centers.")
     
-    if not session_state.support:
+    if not st.session_state.support:
         st.info("🤝 Additional school support may help this student succeed.")
     
     if prediction == False and all([
