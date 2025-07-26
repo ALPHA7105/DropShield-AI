@@ -74,6 +74,8 @@ st.markdown("---")
 
 st.markdown("Fill in student details to predict dropout risk. 🚸")
 
+if 'predicted' not in st.session_state:
+    st.session_state.predicted = False
 
 col1, col2 = st.columns(2)
 
@@ -135,6 +137,13 @@ if st.button("🔍 Predict Dropout Risk"):
     ]):
         st.success("🎯 This student is on the right track! Encourage continued effort and support.")
 
+if st.session_state.predicted:
+    st.markdown("#### ")
+    if st.button("🔁 Reset"):
+        for key in ["gender", "age", "attendance", "internet", "grade", "commute", "income", "support"]:
+            st.session_state[key] = None
+        st.session_state.predicted = False
+        st.experimental_rerun()
 
 st.markdown("""
 <hr style="margin-top: 3rem; border-top: 1px solid #444;">
