@@ -83,13 +83,20 @@ support = st.selectbox("Extra Support", [True, False])
 internet = st.selectbox("Internet Access", [True, False])
 
 if st.button("Predict Dropout Risk"):
-    input_data = np.array([[gender_encoded, age, attendance, grade,
-                            commute, income, support, internet]])
-    prediction = model.predict(input_data)[0]
-    if prediction:
-        st.error("⚠️ High Dropout Risk")
-    else:
-        st.success("✅ Low Dropout Risk")
+    try:
+        input_data = np.array([[gender_encoded, age, attendance, grade,
+                                commute, income, support, internet]])
+
+        prediction = model.predict(input_data)[0]
+
+        if prediction:
+            st.error("⚠️ High Dropout Risk")
+        else:
+            st.success("✅ Low Dropout Risk")
+
+    except Exception as e:
+        st.warning(f"⚠️ Something went wrong: {e}")
+
 
 st.subheader("💡 Suggestions")
 
