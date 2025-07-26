@@ -74,6 +74,7 @@ st.markdown("---")
 
 st.markdown("Fill in student details to predict dropout risk. 🚸")
 
+
 col1, col2 = st.columns(2)
 
 with col1:
@@ -88,11 +89,10 @@ with col2:
     income = st.number_input("Family Income (INR/month)", 2000, 60000, step=100)
     support = st.selectbox("Extra Support", [True, False])
 
-# Encoding gender
 gender_encoded = 1 if gender == "Male" else 0
 
-# Button to Predict
 st.markdown("---")
+
 if st.button("🔍 Predict Dropout Risk"):
     input_data = np.array([[gender_encoded, age, attendance, grade, commute,
                             income, support, internet]])
@@ -100,9 +100,10 @@ if st.button("🔍 Predict Dropout Risk"):
 
     if prediction:
         st.error("⚠️ High Dropout Risk")
+        st.markdown("**Suggestions:** Ensure regular attendance, seek school support, and check internet access.")
     else:
         st.success("✅ Low Dropout Risk")
-
+        st.markdown("Keep up the good work! Continue support and engagement.")
 
 st.subheader("💡 Suggestions")
 
