@@ -72,6 +72,7 @@ st.markdown("""
 st.markdown("Fill in student details to predict dropout risk. 🚸")
 
 gender = st.selectbox("Gender", ["Male", "Female"])
+gender_encoded = 1 if gender == "Male" else 0
 age = st.slider("Age", 13, 19)
 attendance = st.slider("Attendance (%)", 30.0, 100.0)
 grade = st.slider("Grade Average (1.0 to 10.0)", 1.0, 10.0)
