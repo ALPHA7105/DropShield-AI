@@ -106,34 +106,34 @@ if st.button("🔍 Predict Dropout Risk"):
         st.markdown("Keep up the good work! Continue support and engagement.")
 
 
-st.subheader("💡 Suggestions")
+    st.subheader("💡 Suggestions")
 
-if attendance < 60.0:
-    st.warning("📉 Low attendance. Consider engaging parents and offering attendance incentives.")
+    if attendance < 60.0:
+        st.warning("📉 Low attendance. Consider engaging parents and offering attendance incentives.")
     
-if grade < 5.0:
-    st.warning("📚 Low academic performance. Recommend academic support or tutoring.")
+    if grade < 5.0:
+        st.warning("📚 Low academic performance. Recommend academic support or tutoring.")
     
-if income < 8000:
-    st.warning("💰 Low family income. Explore scholarship or subsidy programs.")
+    if income < 8000:
+        st.warning("💰 Low family income. Explore scholarship or subsidy programs.")
     
-if commute > 10.0:
-    st.warning("🚍 Long commute. Suggest looking into transport assistance or flexible learning.")
+    if commute > 10.0:
+        st.warning("🚍 Long commute. Suggest looking into transport assistance or flexible learning.")
     
-if not internet:
-    st.warning("🌐 No internet access. Consider offline resources or community access centers.")
+    if not internet:
+        st.warning("🌐 No internet access. Consider offline resources or community access centers.")
     
-if not support:
-    st.info("🤝 Additional school support may help this student succeed.")
+    if not support:
+        st.info("🤝 Additional school support may help this student succeed.")
     
-if prediction == False and all([
-    attendance >= 90.0,
-    grade >= 8.0,
-    income > 10000,
-    support,
-    internet
-]):
-    st.success("🎯 This student is on the right track! Encourage continued effort and support.")
+    if prediction == False and all([
+        attendance >= 90.0,
+        grade >= 8.0,
+        income > 10000,
+        support,
+        internet
+    ]):
+        st.success("🎯 This student is on the right track! Encourage continued effort and support.")
 
 
 st.markdown("""
