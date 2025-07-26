@@ -105,6 +105,7 @@ if st.button("🔍 Predict Dropout Risk"):
         st.success("✅ Low Dropout Risk")
         st.markdown("Keep up the good work! Continue support and engagement.")
 
+
 st.subheader("💡 Suggestions")
 
 if attendance < 60.0:
