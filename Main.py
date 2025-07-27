@@ -149,9 +149,9 @@ if st.button("🔍 Predict Dropout Risk"):
         st.info("🤝 Additional school support may help this student succeed.")
     
     if prediction == False and all([
-        st.session_state.attendance >= 90.0,
-        st.session_state.grade >= 8.0,
-        st.session_state.income > 10000,
+        st.session_state.attendance >= 60.0,
+        st.session_state.grade >= 5.0,
+        st.session_state.income > 8000,
         st.session_state.support,
         st.session_state.internet
     ]):
