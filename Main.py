@@ -168,9 +168,9 @@ st.markdown("""
 <hr style="margin-top: 3rem; border-top: 1px solid #444;">
 <div style='display: flex; justify-content: space-between; padding: 20px; color: gray; font-size: 14px;'>
     <div style="flex: 1; text-align: left;">
-        <b>The original model was made in Jupyter Notebook.</b>
+        <b>The original model was made in Jupyter Notebook.</b><br>
         <b>A copy of that model was deployed in this webpage.</b><br>
-        <a href='https://drive.google.com/drive/folders/1zJwekyLfYK5GPeopXmzUofm55B7vIzZx' target='_blank'>DropShield AI - Google Drive</a>
+        <a href='https://drive.google.com/drive/folders/1zJwekyLfYK5GPeopXmzUofm55B7vIzZx' target='_blank'>DropShield AI - Google Drive</a><br>
         <a href='https://github.com/ALPHA7105/DropShield-AI' target='_blank'>GitHub Repository</a>
     </div>
     <div style="flex: 1; text-align: center;">
