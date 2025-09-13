@@ -179,7 +179,7 @@ st.markdown("""
     </div>
     <div style="flex: 1; text-align: right;">
         <b>This webpage and AI model was created by Sarvesh Kore:</b><br>
-        📧 ssworld7105@gmail.com<br>📞 +971 563711020
+        📧 ssworld7105@gmail.com<br>📞 +971 563711020<br>DropShield AI©<br>All Rights Reserved
     </div>
 </div>
 """, unsafe_allow_html=True)
